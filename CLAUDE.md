@@ -29,7 +29,7 @@ and do not re-open a decision in passing: propose a new record that supersedes i
 | 0001 | New repo with CrossPoint's full history (not a GitHub fork); `main`, never rebased, merge commits only; `upstream` fetch-only, its tags as `upstream/*` |
 | 0002 | Base: CrossPoint `develop` `3a5bfac3` (2026-11-11), FreeInk SDK pin `6a208c0` |
 | 0003 | SDK submodule from `nandanito/freeink-sdk`: CrossPoint's pin plus the PaperDIY board commits; each pinned commit tagged `crosspaper/<sdk-short-sha>` and published before any firmware commit that pins it is pushed |
-| 0004 | Name CrossPaper; this file replaces the `AGENTS.md` symlink; our code in new files; every edited upstream file in the seams table |
+| 0004 | Name CrossPaper; this file replaces upstream's `CLAUDE.md -> AGENTS.md` symlink; our code in new files; every edited upstream file in the seams table |
 | 0005 | Own SemVer from `0.1.0`; release env, version macros, About, OTA URL and asset names are one lead step (L1) |
 | 0006 | Upstream `partitions.csv` (two 6.25 MiB app slots) |
 
@@ -54,6 +54,7 @@ Upstream merges, the SDK sync and the seams: [docs/upstream-sync.md](docs/upstre
 | AGENTS.md | In CrossPaper |
 |---|---|
 | Integration work targets `develop` | Work targets `main`. Branch from `main`; `develop` exists only upstream |
+| Branch types `feat`, `fix`, `refactor`, `docs`, `test`, `chore`, `perf` (`.agents/rules/git-workflow.md:22`) | Also `sync/crosspoint-<version>` for upstream merges ([docs/upstream-sync.md](docs/upstream-sync.md)) |
 | Never open or close a PR | Open PRs in `nandanito/crosspaper` when Nandan asks. Never open, close or comment on PRs or issues in other projects |
 | The human writes PR descriptions | In our repo a short, plain, factual PR body is fine. For other projects (CrossPoint, FreeInk SDK, M5Stack, dcarnicer's port), draft plain text for Nandan to post |
 | Local commits need explicit approval | An approved plan, or an explicit request to commit, covers commits on its branch |

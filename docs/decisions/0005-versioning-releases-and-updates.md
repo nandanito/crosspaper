@@ -40,7 +40,7 @@ For who changes it: several workers each touching a part (version flags, OTA, Ab
   (and the USB product strings) are one integration step, **L1**, owned by the lead after W1 and W3
   ([docs/plan.md](../plan.md) §5). W3 is done only when L1 builds.
 - About shows the CrossPaper version, the CrossPoint base commit and the SDK commit.
-- Until L1, a build still points at CrossPoint's releases. No CrossPaper build is published before L1.
+- Until L1, a build still points at CrossPoint's releases and names itself CrossPoint.
 
 ## Consequences
 
