@@ -86,7 +86,7 @@ There is no PaperDIY environment at the bootstrap base; wave 1 (W1) adds `paperd
 ```sh
 ~/.local/bin/pio run -e paperdiy       # development build (after W1)
 ~/.local/bin/pio run -t unit-tests     # host tests (CMake + GoogleTest)
-bin/clang-format-fix                   # format; needs clang-format 21
+./bin/clang-format-fix -g              # format the C/C++ files you changed; needs clang-format 21
 ```
 
 Run **one PlatformIO build at a time across all worktrees**, with the global `~/.platformio`:

@@ -89,7 +89,7 @@ series sits on (`OLD_UP`, the "Upstream pin" column of the last row in the table
 ```sh
 git -C freeink-sdk fetch freeink
 git -C freeink-sdk fetch origin --tags
-NEW_UP=$(git rev-parse "$TARGET:freeink-sdk")    # CrossPoint's pin at the merge target (tag or develop commit)
+NEW_UP=$(git rev-parse "${TARGET}:freeink-sdk")  # CrossPoint's pin at the merge target; keep the braces (zsh)
 ```
 
 - **Upstream did not move its pin** (`NEW_UP` = `OLD_UP`): keep ours. The merge leaves our gitlink at `OLD_PIN`;
@@ -104,8 +104,11 @@ NEW_UP=$(git rev-parse "$TARGET:freeink-sdk")    # CrossPoint's pin at the merge
      upstream took in part may conflict, or may apply cleanly with only the rest left, so compare the series
      before and after (`git -C freeink-sdk range-diff "$OLD_UP..$OLD_PIN" "$NEW_UP..crosspaper/main"`) and say in
      the PR what was dropped or reduced.
-  3. Build the PaperDIY environment and run the SDK host tests (`freeink-sdk/docs/testing.md`), at least
-     `sh libs/hardware/InputManager/test/host/run.sh` and the suites for the files the series touches.
+  3. Update the SDK's own submodules, `git -C freeink-sdk submodule update --init --recursive` (not the top-level
+     update, which would restore the old pin). Then build the PaperDIY environment and run the SDK host tests
+     from inside the SDK (`freeink-sdk/docs/testing.md`), at least
+     `(cd freeink-sdk && sh libs/hardware/InputManager/test/host/run.sh)` and the suites for the files the series
+     touches.
   4. **Publish and tag before pinning**, with approval for each push:
      `git -C freeink-sdk push --force-with-lease=crosspaper/main:"$OLD_PIN" origin crosspaper/main` (refused if
      the fork's branch moved after `OLD_PIN`), then `git -C freeink-sdk tag crosspaper/<sdk-short-sha>` and
