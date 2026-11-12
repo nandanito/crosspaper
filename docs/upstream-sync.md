@@ -89,6 +89,8 @@ series sits on (`OLD_UP`, the "Upstream pin" column of the last row in the table
 ```sh
 git -C freeink-sdk fetch freeink
 git -C freeink-sdk fetch origin --tags
+OLD_UP=$(git -C freeink-sdk rev-parse --verify '<upstream pin, last row of the table>^{commit}')
+git -C freeink-sdk merge-base --is-ancestor "$OLD_UP" "$OLD_PIN" || echo "STOP: OLD_PIN is not on OLD_UP"
 NEW_UP=$(git rev-parse "${TARGET}:freeink-sdk")  # CrossPoint's pin at the merge target; keep the braces (zsh)
 ```
 
